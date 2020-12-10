@@ -6,7 +6,12 @@
 init()
 {
     level thread onplayerconnect();
-    // initalizing event, nothing happening here as of now.
+    level thread init_server_dvars();
+}
+
+init_server_dvars()
+{
+    level.revive_actions = getDvarIntDefault("reviveActions", 1); // "set reviveActions 1"
 }
 
 onplayerconnect()
@@ -15,17 +20,27 @@ onplayerconnect()
     {
         level waittill("connected", player);
         player thread onplayerspawned();
-        // connected player event, nothing happening here as of now.
     }
 }
 
 onplayerspawned()
 {
     self endon("disconnect");
-	level endon("game_ended");
+	level endon("end_game");
+    self.firstSpawn = true;
     for(;;)
     {
         self waittill("spawned_player");
-        // spawner player event, nothing happening here as of now.
+
+        // wait for the black screen to pass if the player is not joining later.
+        if (!flag( "initial_blackscreen_passed" ) && !is_true(self.is_hotjoining)) {
+            while(!flag( "initial_blackscreen_passed")) 
+                wait 0.2;
+        }
+
+        if (self.firstSpawn) {
+            // do stuff on first spawn. will prob need later.
+            self.firstSpawn = false;
+        }
     }
 }
