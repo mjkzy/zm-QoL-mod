@@ -1,6 +1,7 @@
 /*
 
     Concept for after you get revived, you can thank for the revive.
+    .
 
     Call every time player spawns:
     self thread checkSelfMonitors(true);

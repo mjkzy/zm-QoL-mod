@@ -11,7 +11,7 @@ init()
 
 init_server_dvars()
 {
-    level.revive_actions = getDvarIntDefault("reviveActions", 1); // "set reviveActions 1"
+    level.revive_actions = getDvarIntDefault("reviveActions", 1); // "set reviveActions 1";
 }
 
 onplayerconnect()
