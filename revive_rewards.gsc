@@ -1,7 +1,7 @@
 /*
 reward the player when they sucessfully revive another player
 
-current reward is points.
+current rewards are points and speedboost.
 
 if enabled, revive_rewards() should be called for each player on connect/first spawn.
 
@@ -26,13 +26,14 @@ revive_rewards()
 
             if(getDvarIntDefault( "QOL_revive_rewards_speedboost_on", 1 ))
             {
+                
                 reviver speed_reward();
             }
                 
 		}
 	}
 }
-//gived the reviver a speedboost of a config defined length of time, with 5 seconds being the default
+//gives a player a doubled movement speed scale for a config defined length of time, with 5 seconds being the default.
 speed_reward()
 {
     length = getDvarIntDefault( "QOL_revive_rewards_speedboost_length", 5 );
