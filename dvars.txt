@@ -1,11 +1,14 @@
-Dvar naming scheme:
 
-QOL + _ + mod alias + _ + what it does
+Dvars:
 
-set QOL_round_salary_on 1
-set QOL_round_salary_points_per_round 50
+(Example of Use: "QOL_(mod)_(what it does) (value)")
+
+set QOL_thank_reviver 1
 set QOL_revive_rewards_on 1
 set QOL_revive_rewards_points_on 1
 set QOL_revive_rewards_points 500
 set QOL_revive_rewards_speedboost_on 1
-set QOL_revive_rewards_speedboost_length 5 
+set QOL_revive_rewards_speedboost_length 3
+
+set QOL_round_salary_on 1
+set QOL_round_salary_points_per_round 50
