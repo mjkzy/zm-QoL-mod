@@ -10,7 +10,7 @@ monitorLastStand()
     level endon("end_game");
     for(;;) {
         self waittill("player_revived", reviver);
-        iprintln(reviver + " revived " + self.name)
+        iprintln(reviver + " revived " + self.name);
         if (self != reviver && isDefined(reviver))
         {
             self.saidThanks = false;
@@ -39,8 +39,8 @@ monitorThanks(reviver) // THIS WILL SOON BE REPLACED WITH NotifyOnPlayerCommand(
             self.thanksText Destroy();
             self.thanksText Hide();
             self.thanksText Delete();
-            reviver iprintln(self.name ": Thank you for the revive " + reviver.name + " !");
-            self iprintln(self.name ": Thank you for the revive " + reviver.name + " !");
+            reviver iprintln(self.name + ": Thank you for the revive " + reviver.name + " !");
+            self iprintln(self.name + ": Thank you for the revive " + reviver.name + " !");
         }
         wait 0.02;
     }
