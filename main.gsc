@@ -23,6 +23,10 @@ onplayerconnect()
     for(;;)
     {
         level waittill("connected", player);
+        if ( getDvarIntDefault( "QOL_revive_rewards_on", 1 ) )
+        {
+            player thread revive_rewards();
+        }
         player thread onplayerspawned();
     }
 }
