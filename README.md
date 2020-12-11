@@ -21,6 +21,13 @@ so feel free to help us out! All you need to do is:
 3. Go to your forked repository's pull requests and create a new one
 4. Add the title/description of whatever you are adding
 
+# Building
+
+To build the source of the project, you must use GSC Studio or another program that can compile. (GSC Studio is recommended to use because of how we seperated all
+of the files out seperately to make it more organized and easier to target functions and any bugs with it). If you cannot use GSC Studio, you can also
+combine all of the files manually into one file and then compile then. We do not offer any support for building the project and is something you do on your
+own if you have the knowledge to do so.
+
 # Configurable Dvars
 
 Because of how easy we want the mod to be for any server owner, new or old, we have decided to make it possible to change/configure the mod without having to rebuilt the sourc
