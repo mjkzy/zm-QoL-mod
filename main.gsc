@@ -2,6 +2,7 @@
 #include common_scripts\utility;
 #include maps\mp\gametypes_zm\_hud_util;
 #include maps\mp\gametypes_zm\_hud_message;
+#include maps\mp\zombies\_zm_laststand;
 
 init()
 {
@@ -12,13 +13,18 @@ init()
 init_server_dvars()
 {
     level.revive_actions = getDvarIntDefault("QOL_thank_reviver", 1);
-    level.round_salary = getDvarIntDefault("QOL_round_salary_on", 1);
-    level.round_salary_amount = getDvarIntDefault("QOL_round_salary_points_per_round", 50);
+    level.thank_reviver_expire_time = getDvarIntDefault("QOL_thank_reviver_expire_time", 5);
+    level.thank_reviver_rewards_on = getDvarIntDefault("QOL_thank_reviver_rewards_on", 1);
+    level.thank_reviver_get_points = getDvarIntDefault("QOL_thank_reviver_reward", 100);
     level.revive_rewards_on = getDvarIntDefault("QOL_revive_rewards_on", 1);
     level.revive_rewards_points_on = getDvarIntDefault("QOL_revive_rewards_points_on", 1);
     level.revive_rewards_points = getDvarIntDefault("QOL_revive_rewards_points", 500);
     level.revive_rewards_speedboost_on = getDvarIntDefault("QOL_revive_rewards_speedboost_on", 1);
     level.revive_rewards_speedboost_length = getDvarIntDefault("QOL_revive_rewards_speedboost_length", 5);
+
+    level.round_salary = getDvarIntDefault("QOL_round_salary_on", 1);
+    level.round_salary_amount = getDvarIntDefault("QOL_round_salary_points_per_round", 50);
+    level.round_salary_printin = getDvarIntDefault("QOL_round_salary_printin", 1);
     if (level.round_salary)
         level thread round_salary();
 }
@@ -47,10 +53,17 @@ onplayerspawned()
         }
 
         if (self.firstSpawn) {
-            if (level.revive_rewards_on) {
+            if (level.revive_rewards_on)
                 self thread revive_rewards();
-            }
+            if (level.revive_actions)
+                self thread monitorLastStand();
             self.firstSpawn = false;
         }
     }
+}
+
+addPlayerPoints(player, points)
+{
+    player playsound("zmb_cha_ching");
+    player.score += points;
 }
