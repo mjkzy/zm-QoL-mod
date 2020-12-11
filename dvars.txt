@@ -1,0 +1,6 @@
+Dvar naming scheme:
+
+QOL + _ + mod alias + _ + what it does
+
+set QOL_round_salary_on 1
+set QOL_round_salary_points_per_round 50

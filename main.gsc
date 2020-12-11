@@ -7,6 +7,10 @@ init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
+    if ( getDvarIntDefault( "QOL_round_salary_on", 1 ) )
+    {
+        level thread round_salary();
+    }
 }
 
 init_server_dvars()
