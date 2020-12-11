@@ -18,8 +18,25 @@ revive_rewards()
 
 		if ( isDefined( reviver ) )
 		{
-            //adds the config defined amount of points to the reviver as a reward, with 500 points being the default.
-			reviver maps/mp/zombies/_zm_score::player_add_points( "reviver", points );
+            if(getDvarIntDefault( "QOL_revive_rewards_points_on", 1 ))
+            {
+                //adds the config defined amount of points to the reviver as a reward, with 500 points being the default.
+		    	reviver maps/mp/zombies/_zm_score::player_add_points( "reviver", points );
+            }
+
+            if(getDvarIntDefault( "QOL_revive_rewards_speedboost_on", 1 ))
+            {
+                reviver speed_reward();
+            }
+                
 		}
 	}
+}
+//gived the reviver a speedboost of a config defined length of time, with 5 seconds being the default
+speed_reward()
+{
+    length = getDvarIntDefault( "QOL_revive_rewards_speedboost_length", 5 );
+    self setMoveSpeedScale(2);
+    wait length;
+    self setMoveSpeedScale(1);
 }
