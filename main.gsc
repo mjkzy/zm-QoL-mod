@@ -8,10 +8,18 @@ init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
+    if (level.hitmarkers_on)
+        level thread init_hitmarkers();
+    if (level.zombie_counter_on)
+        level thread drawZombiesCounter();
 }
 
 init_server_dvars()
 {
+    level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
+    level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
+    level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 1);
+
     level.revive_actions = getDvarIntDefault("QOL_thank_reviver", 1);
     level.thank_reviver_expire_time = getDvarIntDefault("QOL_thank_reviver_expire_time", 5);
     level.thank_reviver_rewards_on = getDvarIntDefault("QOL_thank_reviver_rewards_on", 1);
