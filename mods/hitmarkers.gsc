@@ -17,8 +17,8 @@ init_hitmarkers()
         	{
         		player thread init_player_hitmarkers();
         	}
-        	wait 0.1;
         }
+	wait 0.05;
     }
 }
 
