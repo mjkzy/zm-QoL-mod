@@ -12,10 +12,12 @@ init()
         level thread init_hitmarkers();
     if (level.zombie_counter_on)
         level thread drawZombiesCounter();
+    level.first_connection = [];
 }
 
 init_server_dvars()
 {
+    level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 1);
     level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
     level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
     level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 1);
@@ -43,6 +45,10 @@ onplayerconnect()
     {
         level waittill("connected", player);
         player thread onplayerspawned();
+        
+        player first_connection();
+        if(level.spawn_on_join_on)
+            player thread spawn_on_join();
     }
 }
 

@@ -6,6 +6,7 @@ Other Dvars:
 set QOL_hitmarkers_on 1                                 // Enable/Disable Hitmarkers
 set QOL_hitmarkers_red 0                                // Enable/Disable Red hitmarkers on death of zombie
 set QOL_zombie_counter_on 1                             // Enable/Disable Zombies left counter
+set QOL_spawn_on_join_on 1                              // Enable/Disable Spawning player immediately on first join of the game.
 
 Revive Dvars:
 set QOL_thank_reviver 1                                 // Enable/Disable the "Press (Key) to say thanks" to thank reviver when revived
