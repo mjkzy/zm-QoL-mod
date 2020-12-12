@@ -8,9 +8,9 @@ init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
-    if (level.hitmarkers_on)
+    if (is_true(level.hitmarkers_on))
         level thread init_hitmarkers();
-    if (level.zombie_counter_on)
+    if (is_true(level.zombie_counter_on))
         level thread drawZombiesCounter();
     level.first_connection = [];
 }
@@ -18,6 +18,8 @@ init()
 init_server_dvars()
 {
     level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 1);
+    level.spawn_on_join_immunity_on = getDvarIntDefault("QOL_spawn_on_join_immunity_on", 1);
+    level.spawn_on_join_immunity = getDvarIntDefault("QOL_spawn_on_join_immunity", 3);
     level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
     level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
     level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 1);
@@ -35,7 +37,7 @@ init_server_dvars()
     level.round_salary = getDvarIntDefault("QOL_round_salary_on", 1);
     level.round_salary_amount = getDvarIntDefault("QOL_round_salary_points_per_round", 50);
     level.round_salary_printin = getDvarIntDefault("QOL_round_salary_printin", 1);
-    if (level.round_salary)
+    if (is_true(level.round_salary))
         level thread round_salary();
 }
 
@@ -47,7 +49,7 @@ onplayerconnect()
         player thread onplayerspawned();
         
         player first_connection();
-        if(level.spawn_on_join_on)
+        if(is_true(level.spawn_on_join_on))
             player thread spawn_on_join();
     }
 }
@@ -66,10 +68,10 @@ onplayerspawned()
             flag_wait("initial_blackscreen_passed");
         }
 
-        if (self.firstSpawn) {
-            if (level.revive_rewards_on)
+        if (is_true(self.firstSpawn)) {
+            if (is_true(level.revive_rewards_on)()
                 self thread revive_rewards();
-            if (level.revive_actions)
+            if (is_true(level.revive_actions))
                 self thread monitorLastStand();
             self.firstSpawn = false;
         }
