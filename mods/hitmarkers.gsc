@@ -6,19 +6,25 @@
 
 init_hitmarkers()
 {
-    precacheshader("damage_feedback");
+    precacheshader( "damage_feedback" );
+    level.redHm = getDvarIntDefault( "redHitmarkers", 1 );
     level.callbackactordamage = ::actor_damage_hitmarkers;
-    level endon("end_game");
+    level endon( "end_game" );
     while(true)
     {
-        foreach(player in level.players)
-        {
-        	if(!isDefined(player.hud_damagefeedback))
+		if (!flag("initial_blackscreen_passed"))
+    		flag_wait( "initial_blackscreen_passed" );
+		if(level.players > 0)
+		{
+        	foreach(player in level.players)
         	{
-        		player thread init_player_hitmarkers();
-        	}
+        		if(!isDefined( player.hud_damagefeedback))
+        		{
+        			player init_player_hitmarkers();
+        		}
+			}
         }
-	wait 0.05;
+		wait 0.05;
     }
 }
 
