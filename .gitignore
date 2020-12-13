@@ -1,1 +1,3 @@
 .vscode/tasks.json
+.vscode/compile.ps1
+Build/
