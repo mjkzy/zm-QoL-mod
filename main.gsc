@@ -24,6 +24,9 @@ init_server_dvars()
     level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
     level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 0);
 
+    level.player_perk_mix = getDvarIntDefault("QOL_perks_on_join_on", 1);
+    level.player_perk_mix_printin = getDvarIntDefault("QOL_perks_on_join_printin", 0);
+
     level.revive_actions = getDvarIntDefault("QOL_thank_reviver", 1);
     level.thank_reviver_expire_time = getDvarIntDefault("QOL_thank_reviver_expire_time", 5);
     level.thank_reviver_rewards_on = getDvarIntDefault("QOL_thank_reviver_rewards_on", 1);
@@ -68,11 +71,15 @@ onplayerspawned()
             flag_wait("initial_blackscreen_passed");
         }
 
-        if (is_true(self.firstSpawn)) {
-            if (is_true(level.revive_rewards_on))
+        if (self.firstSpawn) {
+            if (level.revive_rewards_on)
                 self thread revive_rewards();
-            if (is_true(level.revive_actions))
+            if (level.revive_actions)
                 self thread monitorLastStand();
+            if (level.player_perk_mix) {
+                if (self.first_connection)
+                    self thread give_player_perk_mix();
+            }
             self.firstSpawn = false;
         }
     }
