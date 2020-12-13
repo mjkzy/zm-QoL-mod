@@ -10,8 +10,7 @@ monitorLastStand()
     level endon("end_game");
     for(;;) {
         self waittill("player_revived", reviver);
-        //self != reviver && 
-        if (isDefined(reviver)) {
+        if (self != reviver && isDefined(reviver)) {
             self.saidThanks = false;
             self thread afterReviveFunc(reviver);
         }

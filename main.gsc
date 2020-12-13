@@ -22,7 +22,7 @@ init_server_dvars()
     level.spawn_on_join_immunity = getDvarIntDefault("QOL_spawn_on_join_immunity", 3);
     level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
     level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
-    level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 1);
+    level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 0);
 
     level.revive_actions = getDvarIntDefault("QOL_thank_reviver", 1);
     level.thank_reviver_expire_time = getDvarIntDefault("QOL_thank_reviver_expire_time", 5);
@@ -32,11 +32,11 @@ init_server_dvars()
     level.revive_rewards_points_on = getDvarIntDefault("QOL_revive_rewards_points_on", 1);
     level.revive_rewards_points = getDvarIntDefault("QOL_revive_rewards_points", 500);
     level.revive_rewards_speedboost_on = getDvarIntDefault("QOL_revive_rewards_speedboost_on", 1);
-    level.revive_rewards_speedboost_length = getDvarIntDefault("QOL_revive_rewards_speedboost_length", 5);
+    level.revive_rewards_speedboost_length = getDvarIntDefault("QOL_revive_rewards_speedboost_length", 3);
 
     level.round_salary = getDvarIntDefault("QOL_round_salary_on", 1);
     level.round_salary_amount = getDvarIntDefault("QOL_round_salary_points_per_round", 50);
-    level.round_salary_printin = getDvarIntDefault("QOL_round_salary_printin", 1);
+    level.round_salary_printin = getDvarIntDefault("QOL_round_salary_printin", 0);
     if (is_true(level.round_salary))
         level thread round_salary();
 }

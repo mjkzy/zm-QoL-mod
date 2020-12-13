@@ -5,7 +5,7 @@ Custom Dvars
 Other Dvars:
 set QOL_hitmarkers_on 1                                 // Enable/Disable Hitmarkers
 set QOL_hitmarkers_red 0                                // Enable/Disable Red hitmarkers on death of zombie
-set QOL_zombie_counter_on 1                             // Enable/Disable Zombies left counter
+set QOL_zombie_counter_on 0                             // Enable/Disable "Zombies left" counter
 set QOL_spawn_on_join_on 1                              // Enable/Disable Spawning player in immediately on first join of the game.
 set QOL_spawn_on_join_immunity_on 1                     // Enable/Disable Player has immunity when they join
 set QOL_spawn_on_join_immunity 3                        // How long (in seconds) the player will have immunity to damage.
@@ -24,4 +24,4 @@ set QOL_revive_rewards_speedboost_length 3              // How long (in seconds)
 Round Dvars:
 set QOL_round_salary_on 1                               // Enable/Disable getting points for advancing higher in rounds
 set QOL_round_salary_points_per_round 50                // How many points you want to give per round. The math for this is: (salary * round number) - salary
-set QOL_round_salary_printin 1                          // Enable/Disable the player getting the message: "New round! Rewarded X points."
+set QOL_round_salary_printin 0                          // Enable/Disable the player getting the message: "New round! Rewarded X points."

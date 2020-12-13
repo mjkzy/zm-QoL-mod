@@ -6,7 +6,7 @@
 
 drawZombiesCounter()
 {
-    level.zombiesCounter = createServerFontString("hudsmall" , 1.3);
+    level.zombiesCounter = createServerFontString("hudsmall" , 1.2);
     level.zombiesCounter setPoint("CENTER", "CENTER", "CENTER", 190);
     while(true)
     {

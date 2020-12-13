@@ -33,9 +33,9 @@ spawn_on_join()
 		thread maps\mp\zombies\_zm::refresh_player_navcard_hud();
         if (is_true(level.spawn_on_join_immunity_on)) {
             immunitytime = level.spawn_on_join_immunity;
-            self EnableInvulnerability();
+            self.ignoreme = true;
             wait immunitytime;
-            self DisableInvulnerability();
+            self.ignoreme = false;
         }
 	}
 }
