@@ -8,9 +8,9 @@ init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
-    if (is_true(level.hitmarkers_on))
+    if (level.hitmarkers_on)
         level thread init_hitmarkers();
-    if (is_true(level.zombie_counter_on))
+    if (level.zombie_counter_on)
         level thread drawZombiesCounter();
     level.first_connection = [];
 }
@@ -40,7 +40,7 @@ init_server_dvars()
     level.round_salary = getDvarIntDefault("QOL_round_salary_on", 1);
     level.round_salary_amount = getDvarIntDefault("QOL_round_salary_points_per_round", 50);
     level.round_salary_printin = getDvarIntDefault("QOL_round_salary_printin", 0);
-    if (is_true(level.round_salary))
+    if (level.round_salary)
         level thread round_salary();
 }
 
@@ -52,7 +52,7 @@ onplayerconnect()
         player thread onplayerspawned();
         
         player first_connection();
-        if(is_true(level.spawn_on_join_on))
+        if(level.spawn_on_join_on)
             player thread spawn_on_join();
     }
 }
