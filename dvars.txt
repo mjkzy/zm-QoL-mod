@@ -25,3 +25,6 @@ Round Dvars:
 set QOL_round_salary_on 1                               // Enable/Disable getting points for advancing higher in rounds
 set QOL_round_salary_points_per_round 50                // How many points you want to give per round. The math for this is: (salary * round number) - salary
 set QOL_round_salary_printin 0                          // Enable/Disable the player getting the message: "New round! Rewarded X points."
+
+Mystery Box Dvars:
+set QOL_limited_box_weapons_enabled 0                   // Disables Treyarchs limited mystery box weapon system completely.
