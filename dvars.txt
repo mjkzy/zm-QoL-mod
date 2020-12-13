@@ -7,8 +7,8 @@ set QOL_hitmarkers_on 1                                 // Enable/Disable Hitmar
 set QOL_hitmarkers_red 0                                // Enable/Disable Red hitmarkers on death of zombie
 set QOL_zombie_counter_on 0                             // Enable/Disable "Zombies left" counter
 set QOL_spawn_on_join_on 1                              // Enable/Disable Spawning player in immediately on first join of the game.
-set QOL_spawn_on_join_immunity_on 1                     // Enable/Disable Player has immunity when they join
-set QOL_spawn_on_join_immunity 3                        // How long (in seconds) the player will have immunity to damage.
+set QOL_spawn_on_join_ignore_on 1                     // Enable/Disable Player has immunity when they join
+set QOL_spawn_on_join_ignore 3                        // How long (in seconds) the player will be ignored by zombies
 
 Revive Dvars:
 set QOL_thank_reviver 1                                 // Enable/Disable the "Press (Key) to say thanks" to thank reviver when revived
