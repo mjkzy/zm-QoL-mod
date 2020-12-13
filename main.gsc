@@ -69,7 +69,7 @@ onplayerspawned()
         }
 
         if (is_true(self.firstSpawn)) {
-            if (is_true(level.revive_rewards_on)()
+            if (is_true(level.revive_rewards_on))
                 self thread revive_rewards();
             if (is_true(level.revive_actions))
                 self thread monitorLastStand();
