@@ -3,16 +3,17 @@ Custom Dvars
 (ex: "set QOL_thank_reviver 0" will disable the thanking of the reviver.)
 
 Other Dvars:
-set QOL_hitmarkers_on 1                                 // Enable/Disable Hitmarkers
-set QOL_hitmarkers_red 0                                // Enable/Disable Red hitmarkers on death of zombie
+set QOL_hitmarkers_on 1                                 // Enable/Disable hitmarkers
+set QOL_hitmarkers_red 0                                // Enable/Disable red hitmarkers on death of zombie
 set QOL_zombie_counter_on 0                             // Enable/Disable "Zombies left" counter
-set QOL_spawn_on_join_on 1                              // Enable/Disable Spawning player in immediately on first join of the game.
-set QOL_spawn_on_join_ignore_on 1                       // Enable/Disable Player has immunity when they join
+set QOL_spawn_on_join_on 1                              // Enable/Disable spawning player in immediately on first join of the game.
+set QOL_spawn_on_join_ignore_on 1                       // Enable/Disable player has immunity when they join
 set QOL_spawn_on_join_ignore 3                          // How long (in seconds) the player will be ignored by zombies
-set QOL_perks_on_join_on 1                              // Enable/Disable Players getting mix of perks on first join
-set QOL_perks_on_join_printin 0                         // Enable/Disable Players getting printin when perk mix happens
-set QOL_disable_melee_lunge 0                           // Enable/Disable Melee lunging with knife
-set QOL_give_semtex_on_spawn 0                          // Enable/Disable Players getting semtex on spawn if semtex exists in map
+set QOL_perks_on_join_on 1                              // Enable/Disable players getting mix of perks on first join
+set QOL_perks_on_join_printin 0                         // Enable/Disable players getting printin when perk mix happens
+set QOL_disable_melee_lunge 0                           // Enable/Disable melee lunging with knife
+set QOL_give_semtex_on_spawn 0                          // Enable/Disable players getting semtex on spawn if semtex exists in map
+set QOL_disable_friendly_fire 1                         // Enable/Disable the player's gun to stop shooting when you look at a player
 
 Revive Dvars:
 set QOL_thank_reviver 1                                 // Enable/Disable the "Press (Key) to say thanks" to thank reviver when revived

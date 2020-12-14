@@ -26,6 +26,9 @@ init_server_dvars()
     level.disable_melee_lunge = getDvarIntDefault("QOL_disable_melee_lunge", 0);
     if (level.disable_melee_lunge)
         level thread disable_melee_lunge();
+    level.disable_friendly_fire = getDvarIntDefault("QOL_disable_friendly_fire", 1);
+    if (level.disable_friendly_fire)
+        level thread disable_friendly_fire();
     level.give_player_semtex_on_spawn = getDvarIntDefault("QOL_give_semtex_on_spawn", 0);
 
     level.player_perk_mix = getDvarIntDefault("QOL_perks_on_join_on", 1);
@@ -97,19 +100,4 @@ addPlayerPoints(player, points)
 {
     player playsound("zmb_cha_ching");
     player.score += points;
-}
-
-// disable melee lunging function
-disable_melee_lunge()
-{
-	setDvar("aim_automelee_enabled", 0);
-}
-
-give_player_semtex()
-{
-	if (level.script != "zm_transit" && level.script != "zm_nuked" && level.script != "zm_highrise" && level.script != "zm_tomb") return;
-	self takeweapon(self get_player_lethal_grenade());
-	self set_player_lethal_grenade("sticky_grenade_zm");
-	self giveweapon(self get_player_lethal_grenade());
-	self setweaponammoclip(self get_player_lethal_grenade(), 0);
 }
