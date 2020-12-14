@@ -23,6 +23,9 @@ init_server_dvars()
     level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
     level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
     level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 0);
+    level.disable_melee_lunge = getDvarIntDefault("QOL_disable_melee_lunge", 0);
+    if (level.disable_melee_lunge)
+        level thread disable_melee_lunge();
 
     level.player_perk_mix = getDvarIntDefault("QOL_perks_on_join_on", 1);
     level.player_perk_mix_printin = getDvarIntDefault("QOL_perks_on_join_printin", 0);
@@ -85,8 +88,15 @@ onplayerspawned()
     }
 }
 
+// custom give player point func that plays with sound
 addPlayerPoints(player, points)
 {
     player playsound("zmb_cha_ching");
     player.score += points;
+}
+
+// disable melee lunging
+disable_melee_lunge()
+{
+	setDvar("aim_automelee_enabled", 0);
 }

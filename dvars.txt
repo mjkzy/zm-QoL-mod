@@ -11,6 +11,7 @@ set QOL_spawn_on_join_ignore_on 1                       // Enable/Disable Player
 set QOL_spawn_on_join_ignore 3                          // How long (in seconds) the player will be ignored by zombies
 set QOL_perks_on_join_on 1                              // Enable/Disable Players getting mix of perks on first join
 set QOL_perks_on_join_printin 0                         // Enable/Disable Players getting printin when perk mix happens
+set QOL_disable_melee_lunge 0                           // Enable/Disable Melee lunging with knife
 
 Revive Dvars:
 set QOL_thank_reviver 1                                 // Enable/Disable the "Press (Key) to say thanks" to thank reviver when revived
