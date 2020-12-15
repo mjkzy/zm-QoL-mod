@@ -33,3 +33,8 @@ set QOL_round_salary_printin 0                          // Enable/Disable the pl
 
 Mystery Box Dvars:
 set QOL_limited_box_weapons_enabled 0                   // Disables Treyarchs limited mystery box weapon system completely.
+set QOL_weapon_add_removal_system 1                     // Enables the box weapon add/remove system.
+set QOL_box_weapon_remove_list ""                       // Example: "ray_gun_zm judge_zm" will remove these 2 guns from the box.
+set QOL_box_weapon_add_list ""                          // Example: "minigun_alcatraz_upgraded_zm spork_zm_alcatraz" will add these 2 weapons to the box. Only works for weapons already on the map but are not in the box already like paped weapons.
+set QOL_customizeable_box_weighting_system 0
+set QOL_box_weapon_weights ""                           // Example: "ray_gun_zm:4 judge_zm:2" will make the raygun appear 4 times as much as a normal gun and 2 times more than the executioner. Max weight is 10

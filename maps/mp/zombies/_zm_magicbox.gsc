@@ -919,44 +919,129 @@ treasure_chest_canplayerreceiveweapon( player, weapon, pap_triggers ) //checked 
 	{
 		return 0;
 	}
-	if ( !limited_weapon_below_quota( weapon, player, pap_triggers ) )
+	if ( !getDvarInt( "QOL_limited_box_weapons_enabled" ) )
 	{
-		return 0;
-	}
-	if ( !player player_can_use_content( weapon ) )
-	{
-		return 0;
-	}
-	if ( isDefined( level.custom_magic_box_selection_logic ) )
-	{
-		if ( !( [[ level.custom_magic_box_selection_logic ]]( weapon, player, pap_triggers ) ) )
+		if ( !limited_weapon_below_quota( weapon, player, pap_triggers ) )
 		{
 			return 0;
 		}
-	}
-	if ( isDefined( player ) && isDefined( level.special_weapon_magicbox_check ) )
-	{
-		return player [[ level.special_weapon_magicbox_check ]]( weapon );
+		if ( !player player_can_use_content( weapon ) )
+		{
+			return 0;
+		}
+		if ( isDefined( level.custom_magic_box_selection_logic ) )
+		{
+			if ( !( [[ level.custom_magic_box_selection_logic ]]( weapon, player, pap_triggers ) ) )
+			{
+				return 0;
+			}
+		}
+		if ( isDefined( player ) && isDefined( level.special_weapon_magicbox_check ) )
+		{
+			return player [[ level.special_weapon_magicbox_check ]]( weapon );
+		}
 	}
 	return 1;
 }
 
+QOL_add_weapons_to_box()
+{
+	if ( getDvar( "QOL_box_weapon_add_list" ) == "" )
+	{
+		return;
+	}
+	weapons = strtok( getDvar( "QOL_box_weapon_add_list" ), " " );
+	foreach ( weapon in weapons )
+	{
+		if ( isDefined( level.zombie_weapons[ weapon ] ) )
+		{
+			level.zombie_weapons[ weapon ].is_in_box = 1;
+		}
+	}	
+}
+
+QOL_remove_weapons_from_box()
+{
+	if ( getDvar( "QOL_box_weapon_remove_list" ) == "" )
+	{
+		return;
+	}
+	weapons = strtok( "QOL_box_weapon_remove_list", " " );
+	foreach ( weapon in weapons )
+	{
+		if ( isDefined( level.zombie_weapons[ weapon ] ) )
+		{
+			level.zombie_weapons[ weapon ].is_in_box = 0;
+		}
+	}
+}
+/*
+QOL_calculate_total_weapons_by_weight()
+{
+	total_weapons_by_weight = 0;
+	weapons = getarraykeys( level.zombie_weapons );
+	foreach ( weapon in weapons )
+	{
+		total_weapons_by_weight += level.zombie_weapons[ weapon ].weight;
+	}
+	return total_weapons_by_weight;
+}
+*/
+/*
+QOL_generate_seeds()
+{
+	weapons = getarraykeys( level.zombie_weapons );
+	foreach ( weapon in weapons )
+	{
+		if ( level.zombie_weapons[ weapon ].weight > 1 )
+		{
+			if ( level.zombie_weapons[ weapon ].weight > 10 )
+			{
+				level.zombie_weapons[ weapon ].weight = 10;
+			}
+			level.zombie_weapons[ weapon ].seed = [];
+			for ( i = 0; i < level.zombie_weapons[ weapon ].weight; i++ )
+			{
+				level.zombie_weapons[ weapon ].seed[ i ] = randomInt( level.QOL_total_weapons );
+			}
+		}
+	}
+}
+*/
 treasure_chest_chooseweightedrandomweapon( player ) //checked changed to match cerberus output
 {
+	if ( getDvarInt( "QOL_weapon_add_removal_system" ) && !is_true( level.QOL_weapon_add_removal_system_initialized ) )
+	{
+		QOL_remove_weapons_from_box();
+		QOL_add_weapons_to_box();
+		level.QOL_weapon_add_removal_system_initialized = 1;
+	}
+	/*
+	if ( getDvarInt( "QOL_customizeable_box_weighting_system" ) && !is_true( level.QOL_customizeable_box_weighting_system_initialized ) )
+	{
+		weapons = getarraykeys( level.zombie_weapons );
+		foreach ( weapon in weapons )
+		{
+			level.zombie_weapons[ weapon ].is_weighted = 0;
+			level.zombie_weapons[ weapon ].weight = 1;
+		}  
+		level.QOL_customizeable_box_weighting_system_initialized = 1;
+		weighted_weapons = strtok( getDvar( "QOL_box_weapon_weights" ), " " );
+		foreach ( item in weighted_weapons )
+		{
+			weapon_and_weight = strtok( item, ":" );
+			weight = int( weapon_and_weight[ 1 ] );
+			level.zombie_weapons[ weapon_and_weight[ 0 ] ].weight = weight;
+		}
+		level.QOL_total_weapons = QOL_calculate_total_weapons_by_weight();
+		QOL_generate_seeds();
+	}
+	*/
 	keys = array_randomize( getarraykeys( level.zombie_weapons ) );
 	if ( isDefined( level.customrandomweaponweights ) )
 	{
 		keys = player [[ level.customrandomweaponweights ]]( keys );
 	}
-	/*
-/#
-	forced_weapon = getDvar( "scr_force_weapon" );
-	if ( forced_weapon != "" && isDefined( level.zombie_weapons[ forced_weapon ] ) )
-	{
-		arrayinsert( keys, forced_weapon, 0 );
-#/
-	}
-	*/
 	pap_triggers = getentarray( "specialty_weapupgrade", "script_noteworthy" );
 	for ( i = 0; i < keys.size; i++ )
 	{
