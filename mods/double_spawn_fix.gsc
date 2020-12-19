@@ -1,28 +1,10 @@
-#include maps/mp/gametypes_zm/_spawnlogic;
-#include maps/mp/gametypes_zm/_globallogic_defaults;
-#include maps/mp/gametypes_zm/_hostmigration;
-#include maps/mp/gametypes_zm/_spectating;
-#include maps/mp/zombies/_zm_perks;
-#include maps/mp/gametypes_zm/_globallogic_score;
-#include maps/mp/gametypes_zm/_globallogic_ui;
-#include maps/mp/gametypes_zm/_hud_util;
-#include maps/mp/gametypes_zm/_hud_message;
-#include maps/mp/gametypes_zm/_globallogic;
-#include maps/mp/gametypes_zm/_globallogic_utils;
-#include maps/mp/gametypes_zm/_globallogic_audio;
-#include maps/mp/gametypes_zm/_spawning;
-#include maps/mp/gametypes_zm/_globallogic_player;
-#include maps/mp/_utility;
-#include common_scripts/utility;
-#include maps/mp/gametypes_zm/_tweakables;
-#include maps/mp/_challenges;
-#include maps/mp/gametypes_zm/_weapons;
-#include maps/mp/_demo;
-#include maps/mp/gametypes_zm/_globallogic_spawn;
-#include maps/mp/zombies/_zm_stats;
-#include maps/mp/zombies/_zm;
+/*
 
-init()
+    Functions for the double spawn fix are in this file.
+
+*/
+
+init_double_spawn()
 {
     level.spawnplayer = ::spawnplayer;
     level.spawnclient = ::spawnclient;
@@ -524,3 +506,4 @@ waitrespawnorsafespawnbutton() //checked changed to match cerberus output
 		wait 0.05;
 	}
 }
+

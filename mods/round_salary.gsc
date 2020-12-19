@@ -22,3 +22,4 @@ round_salary()
         wait 0.02;
     }
 }
+

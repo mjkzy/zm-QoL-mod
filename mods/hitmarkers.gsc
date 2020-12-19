@@ -118,3 +118,4 @@ updatedamagefeedback(mod, inflictor, death)
 	}
     return 0;
 }
+

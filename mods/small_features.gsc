@@ -25,3 +25,4 @@ disable_friendly_fire()
 {
 	setDvar( "g_friendlyfireDist", "0" );
 }
+

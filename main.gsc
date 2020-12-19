@@ -1,17 +1,38 @@
-#include maps\mp\_utility;
-#include common_scripts\utility;
-#include maps\mp\gametypes_zm\_hud_util;
-#include maps\mp\gametypes_zm\_hud_message;
-#include maps\mp\zombies\_zm_laststand;
+#include maps/mp/zombies/_zm_laststand;
+#include maps/mp/gametypes_zm/_spawnlogic;
+#include maps/mp/gametypes_zm/_globallogic_defaults;
+#include maps/mp/gametypes_zm/_hostmigration;
+#include maps/mp/gametypes_zm/_spectating;
+#include maps/mp/zombies/_zm_perks;
+#include maps/mp/gametypes_zm/_globallogic_score;
+#include maps/mp/gametypes_zm/_globallogic_ui;
+#include maps/mp/gametypes_zm/_hud_util;
+#include maps/mp/gametypes_zm/_hud_message;
+#include maps/mp/gametypes_zm/_globallogic;
+#include maps/mp/gametypes_zm/_globallogic_utils;
+#include maps/mp/gametypes_zm/_globallogic_audio;
+#include maps/mp/gametypes_zm/_spawning;
+#include maps/mp/gametypes_zm/_globallogic_player;
+#include maps/mp/_utility;
+#include common_scripts/utility;
+#include maps/mp/gametypes_zm/_tweakables;
+#include maps/mp/_challenges;
+#include maps/mp/gametypes_zm/_weapons;
+#include maps/mp/_demo;
+#include maps/mp/gametypes_zm/_globallogic_spawn;
+#include maps/mp/zombies/_zm_stats;
+#include maps/mp/zombies/_zm;
 
 init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
+    level thread init_scoreboard();
+    level thread init_double_spawn();
+
     if (level.hitmarkers_on)
         level thread init_hitmarkers();
-    if (level.zombie_counter_on)
-        level thread drawZombiesCounter();
+
     level.first_connection = [];
 }
 
@@ -23,6 +44,8 @@ init_server_dvars()
     level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
     level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
     level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 0);
+    if (level.zombie_counter_on)
+        level thread drawZombiesCounter();
     level.disable_melee_lunge = getDvarIntDefault("QOL_disable_melee_lunge", 0);
     if (level.disable_melee_lunge)
         level thread disable_melee_lunge();
@@ -49,6 +72,26 @@ init_server_dvars()
     level.round_salary_printin = getDvarIntDefault("QOL_round_salary_printin", 0);
     if (level.round_salary)
         level thread round_salary();
+}
+
+init_scoreboard()
+{
+    setdvar("g_ScoresColor_Spectator", ".25 .25 .25");
+	setdvar("g_ScoresColor_Free", ".76 .78 .10");
+	setdvar("g_teamColor_MyTeam", ".4 .7 .4");
+	setdvar("g_teamColor_EnemyTeam", "1 .315 0.35");
+	setdvar("g_teamColor_MyTeamAlt", ".35 1 1");
+	setdvar("g_teamColor_EnemyTeamAlt", "1 .5 0");
+	setdvar("g_teamColor_Squad", ".315 0.35 1");
+	if (level.createfx_enabled)
+		return;
+	if (sessionmodeiszombiesgame()) {
+		setdvar("g_TeamIcon_Axis", "faction_cia");
+		setdvar("g_TeamIcon_Allies", "faction_cdc");
+	} else {
+		setdvar("g_TeamIcon_Axis", game["icons"]["axis"]);
+		setdvar("g_TeamIcon_Allies", game["icons"]["allies"]);
+	}
 }
 
 onplayerconnect()
@@ -81,7 +124,8 @@ onplayerspawned()
         if (level.give_player_semtex_on_spawn)
             self thread give_player_semtex();
 
-        if (self.firstSpawn) {
+        if (self.firstSpawn) 
+        {
             if (level.revive_rewards_on)
                 self thread revive_rewards();
             if (level.revive_actions)
@@ -101,3 +145,4 @@ addPlayerPoints(player, points)
     player playsound("zmb_cha_ching");
     player.score += points;
 }
+

@@ -21,3 +21,4 @@ drawZombiesCounter()
         wait 0.05;
     }
 }
+

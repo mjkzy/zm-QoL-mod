@@ -32,3 +32,4 @@ speed_reward()
     wait length;
     self setMoveSpeedScale(1);
 }
+
