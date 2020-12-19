@@ -1,8 +1,7 @@
 BO2: ZM QOL Mod (Quality of Life)
 ===============================
 
-**[Download latest GSC release.](https://github.com/mikzyy/zm-QoL-mod/releases)**
-**[Download latest DLL (server-side plugin) release.](https://github.com/mikzyy/zm-QoL-mod/releases)**
+**[Download latest release.](https://github.com/mikzyy/zm-QoL-mod/releases)**
 
 # Overview
 
