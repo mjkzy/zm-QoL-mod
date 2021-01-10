@@ -22,14 +22,15 @@
 #include maps/mp/gametypes_zm/_globallogic_spawn;
 #include maps/mp/zombies/_zm_stats;
 #include maps/mp/zombies/_zm;
+#include maps/mp/zombies/_zm_utility;
 
 init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
-    level thread init_scoreboard();
+    //level thread init_scoreboard();
     level thread init_double_spawn();
-    level thread init_version();
+    //level thread init_version();
 
     if (level.hitmarkers_on)
         level thread init_hitmarkers();
@@ -53,7 +54,8 @@ init()
 
 init_server_dvars()
 {
-    level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 1);
+    level.lowertexty = 0;
+    level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 0);
     level.spawn_on_join_immunity_on = getDvarIntDefault("QOL_spawn_on_join_ignore_on", 1);
     level.spawn_on_join_immunity = getDvarIntDefault("QOL_spawn_on_join_ignore", 3);
     level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
@@ -89,31 +91,33 @@ init_server_dvars()
         level thread round_salary();
 }
 
-init_scoreboard()
-{
-    setdvar("g_ScoresColor_Spectator", ".25 .25 .25");
-	setdvar("g_ScoresColor_Free", ".76 .78 .10");
-	setdvar("g_teamColor_MyTeam", ".4 .7 .4");
-	setdvar("g_teamColor_EnemyTeam", "1 .315 0.35");
-	setdvar("g_teamColor_MyTeamAlt", ".35 1 1");
-	setdvar("g_teamColor_EnemyTeamAlt", "1 .5 0");
-	setdvar("g_teamColor_Squad", ".315 0.35 1");
-	if (level.createfx_enabled)
-		return;
-	if (sessionmodeiszombiesgame()) {
-		setdvar("g_TeamIcon_Axis", "faction_cia");
-		setdvar("g_TeamIcon_Allies", "faction_cdc");
-	} else {
-		setdvar("g_TeamIcon_Axis", game["icons"]["axis"]);
-		setdvar("g_TeamIcon_Allies", game["icons"]["allies"]);
-	}
-}
+// init_scoreboard()
+// {
+//     setdvar("g_ScoresColor_Spectator", ".25 .25 .25");
+// 	setdvar("g_ScoresColor_Free", ".76 .78 .10");
+// 	setdvar("g_teamColor_MyTeam", ".4 .7 .4");
+// 	setdvar("g_teamColor_EnemyTeam", "1 .315 0.35");
+// 	setdvar("g_teamColor_MyTeamAlt", ".35 1 1");
+// 	setdvar("g_teamColor_EnemyTeamAlt", "1 .5 0");
+// 	setdvar("g_teamColor_Squad", ".315 0.35 1");
+// 	if (level.createfx_enabled)
+// 		return;
+// 	if (sessionmodeiszombiesgame()) {
+// 		setdvar("g_TeamIcon_Axis", "faction_cia");
+// 		setdvar("g_TeamIcon_Allies", "faction_cdc");
+// 	} else {
+// 		setdvar("g_TeamIcon_Axis", game["icons"]["axis"]);
+// 		setdvar("g_TeamIcon_Allies", game["icons"]["allies"]);
+// 	}
+// }
 
 onplayerconnect()
 {
     for(;;)
     {
         level waittill("connected", player);
+        player freezeControls(0);
+        player thread spawn_button();
         player thread onplayerspawned();
         
         player first_connection();
