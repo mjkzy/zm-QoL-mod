@@ -551,21 +551,3 @@ spawn_button()
 	}
 }
 
-
-// afk_button()
-// {
-// 	while (1)
-// 	{
-// 		//self freezeControls(0);
-// 		if(self fragButtonPressed())
-// 		{
-// 			self iPrintLn("grenade button pressed");
-// 			//afk_command(self);
-// 			wait 1;
-// 		}
-// 		wait 0.1;
-// 	}
-
-
-// }
-
