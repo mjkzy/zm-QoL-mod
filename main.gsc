@@ -28,29 +28,14 @@ init()
 {
     level thread onplayerconnect();
     level thread init_server_dvars();
-    //level thread init_scoreboard();
+    level thread init_scoreboard();
     level thread init_double_spawn();
-    //level thread init_version();
 
     if (level.hitmarkers_on)
         level thread init_hitmarkers();
 
     level.first_connection = [];
 }
-
-// possible noti to be sent?
-/* init_version()
-{
-    level.sendVerNoti = false;
-    level.modVersion = "test1.0";
-    level.checkModVersion = httpGet("https://raw.githubusercontent.com/mikzyy/zm-QoL-mod/main/version.txt?token=APLEL6ZL7M3F7OR3QMXP2QK73V32G");
-    if (!isDefined(level.checkModVersion)) return;
-    if (level.modVersion == level.checkModVersion) {
-        level.sendVerNoti = true;
-    } else {
-        level.sendVerNoti = false;
-    }
-} */
 
 init_server_dvars()
 {
@@ -135,8 +120,6 @@ onplayerspawned()
     {
         self waittill("spawned_player");
 
-
-
         // wait for the black screen to pass if the player is not joining later.
         if (!flag("initial_blackscreen_passed") && !is_true(self.is_hotjoining)) {
             flag_wait("initial_blackscreen_passed");
@@ -147,10 +130,6 @@ onplayerspawned()
 
         if (self.firstSpawn) 
         {
-            /* if (level.sendVerNoti) {
-                self iprintln("A new mod update is available! We recommend to update.");
-                self iprintln("Download: https://github.com/mikzyy/zm-QoL-mod");
-            } */
             if (level.revive_rewards_on)
                 self thread revive_rewards();
             if (level.revive_actions)
