@@ -29,7 +29,7 @@ init()
     level thread onplayerconnect();
     level thread init_server_dvars();
     level thread init_scoreboard();
-    level thread init_double_spawn();
+    //level thread init_double_spawn();
 
     if (level.hitmarkers_on)
         level thread init_hitmarkers();
@@ -68,6 +68,7 @@ init_server_dvars()
     level.revive_rewards_points = getDvarIntDefault("QOL_revive_rewards_points", 500);
     level.revive_rewards_speedboost_on = getDvarIntDefault("QOL_revive_rewards_speedboost_on", 1);
     level.revive_rewards_speedboost_length = getDvarIntDefault("QOL_revive_rewards_speedboost_length", 3);
+    level.revive_rewards_speedboost_scale = getDvarIntDefault("QOL_revive_rewards_speedboost_scale", 1.2);
 
     level.round_salary = getDvarIntDefault("QOL_round_salary_on", 1);
     level.round_salary_amount = getDvarIntDefault("QOL_round_salary_points_per_round", 50);
@@ -149,4 +150,3 @@ addPlayerPoints(player, points)
     player playsound("zmb_cha_ching");
     player.score += points;
 }
-

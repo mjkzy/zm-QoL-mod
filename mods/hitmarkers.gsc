@@ -6,14 +6,13 @@
 
 init_hitmarkers()
 {
-    precacheshader( "damage_feedback" );
+    precacheshader("damage_feedback");
     level.callbackactordamage = ::actor_damage_hitmarkers;
-    level endon( "end_game" );
+    level endon("end_game");
     while(true)
     {
-		if (!flag("initial_blackscreen_passed"))
-    		flag_wait( "initial_blackscreen_passed" );
-		if(level.players > 0)
+    	flag_wait("initial_blackscreen_passed");
+		if(level.players.size > 0)
 		{
         	foreach(player in level.players)
         	{

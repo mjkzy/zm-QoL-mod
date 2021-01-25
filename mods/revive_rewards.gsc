@@ -24,11 +24,12 @@ revive_rewards()
 	}
 }
 
-//gives a player a doubled movement speed scale for a config defined length of time, with 5 seconds being the default.
+// gives a player a small movement speed scale for a config defined length of time, with 5 seconds being the default.
 speed_reward()
 {
     length = level.revive_rewards_speedboost_length;
-    self setMoveSpeedScale(1.2);
+    speedBoost = level.revive_rewards_speedboost_scale;
+    self setMoveSpeedScale(speedBoost);
     wait length;
     self setMoveSpeedScale(1);
 }

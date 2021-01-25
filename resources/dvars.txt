@@ -25,6 +25,7 @@ set QOL_revive_rewards_points_on 1                      // Enable/Disable the re
 set QOL_revive_rewards_points 500                       // How much the point reward will be per revive
 set QOL_revive_rewards_speedboost_on 1                  // Enable/Disable the reviver getting a x1.2 speed boost from x1.0 for reviving
 set QOL_revive_rewards_speedboost_length 3              // How long (in seconds) the speed boost will last
+set QOL_revive_rewards_speedboost_scale 1.2             // How much of a speed boost (Normal speed is 1, Default boost is 1.2)
 
 Round Dvars:
 set QOL_round_salary_on 1                               // Enable/Disable getting points for advancing higher in rounds

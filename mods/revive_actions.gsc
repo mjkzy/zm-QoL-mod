@@ -43,11 +43,10 @@ monitorThanks(reviver)
             self.thanksText Destroy();
             self.thanksText Hide();
             self.thanksText Delete();
-            reviver iprintln(self.name + " thanks you for the revive!");
+            reviver iprintln(self.name + " thanked you for the revive!");
             self.reviveMessage = "You thanked " + reviver.name + ".";
             if (level.revive_rewards_on) {
                 if (level.thank_reviver_rewards_on) {
-                    //self.score += level.thank_reviver_get_points;
                     addPlayerPoints(self, level.thank_reviver_get_points);
                     self iprintln(self.reviveMessage + " (^7+^3100^7)");
                 }
@@ -74,11 +73,8 @@ deleteTextAfterXSeconds()
             if (!self.saidThanks) {
                 self.thanksText setText("");
                 self.thanksText Destroy();
-                self.thanksText Hide();
-                self.thanksText Delete();
                 self notify("stop_monitoring_revive_actions");
             }
         }
     }
 }
-

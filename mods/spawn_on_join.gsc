@@ -4,18 +4,17 @@
 
 */
 
-//this function monitors the first connection of the game for each player, to prevent abuse caused by repeatedly rejoining the game.
-//self.first_connection should only be used for functions that are only supposed to happen once a game/map for a player, unlike the usual self.firstSpawn method, which would happen each time the player connects.
+// this function monitors the first connection of the game for each player, to prevent abuse caused by repeatedly rejoining the game.
+// self.first_connection should only be used for functions that are only supposed to happen once a game/map for a player, unlike the usual self.firstSpawn method, which would happen each time the player connects.
 first_connection()
 {
-
     guid = self getGuid();
-    if(!isinarray(level.first_connection, guid))
+    if (!isinarray(level.first_connection, guid))
     {
         arrayinsert(level.first_connection, guid, level.first_connection.size);
         self.first_connection = true;
     }
-    else if(isinarray(level.first_connection, guid))
+    else if (isinarray(level.first_connection, guid))
     {
         self.first_connection = false;
     }
