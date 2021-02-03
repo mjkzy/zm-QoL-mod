@@ -5,7 +5,7 @@ BO2: ZM QOL Mod (Quality of Life)
 
 Before reading, please know: This mod was not final and a good amount of the features implemented may not be working, or partially broken.
 
-"This project was originally planned to be a All-in-One "Quality of Life" mod for Black Ops 2: Plutonium Zombies. At the time, I  was very invested into doing it while I had free time. Now, I don't have as much time to do so and the mod has sat here for 3 months without too much happening.
+"This project was originally planned to be a All-in-One "Quality of Life" mod for Black Ops 2: Plutonium Zombies. At the time, I  was very invested into doing it while I had free time. Now, I and the others don't have as much time to do so and the mod has sat here for 3 months without too much happening.
 So, I'm open sourcing this project for anyone to get code snippets, or see how we went about doing a lot of the stuff.
 
 We will still be taking contributions, and I will still check the issues from time to time. Please feel free to use ANY of this code from the mod. If you want to open a pull request too, we will review that as much as I check.
