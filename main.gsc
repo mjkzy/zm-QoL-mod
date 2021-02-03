@@ -55,6 +55,7 @@ init_server_dvars()
     if (level.disable_friendly_fire)
         level thread disable_friendly_fire();
     level.give_player_semtex_on_spawn = getDvarIntDefault("QOL_give_semtex_on_spawn", 0);
+    level.bo4_max_ammo = getDvarIntDefault("QOL_bo4_max_ammo", 1);
 
     level.player_perk_mix = getDvarIntDefault("QOL_perks_on_join_on", 1);
     level.player_perk_mix_printin = getDvarIntDefault("QOL_perks_on_join_printin", 0);
@@ -107,7 +108,7 @@ onplayerconnect()
         player thread onplayerspawned();
         
         player first_connection();
-        if(level.spawn_on_join_on)
+        if (level.spawn_on_join_on)
             player thread spawn_on_join();
     }
 }
@@ -126,6 +127,7 @@ onplayerspawned()
             flag_wait("initial_blackscreen_passed");
         }
 
+        // only works on supported maps
         if (level.give_player_semtex_on_spawn)
             self thread give_player_semtex();
 
@@ -139,6 +141,8 @@ onplayerspawned()
                 if (self.first_connection)
                     self thread give_player_perk_mix();
             }
+            if (level.bo4_max_ammo)
+                self thread doBO4MaxAmmo();
             self.firstSpawn = false;
         }
     }

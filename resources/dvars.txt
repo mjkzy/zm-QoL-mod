@@ -14,6 +14,7 @@ set QOL_perks_on_join_printin 0                         // Enable/Disable player
 set QOL_disable_melee_lunge 0                           // Enable/Disable melee lunging with knife
 set QOL_give_semtex_on_spawn 0                          // Enable/Disable players getting semtex on spawn if semtex exists in map
 set QOL_disable_friendly_fire 1                         // Enable/Disable the player's gun to stop shooting when you look at a player
+set QOL_bo4_max_ammo 1                                  // Enable/Disable BO4 max ammo (don't have to reload)
 
 Revive Dvars:
 set QOL_thank_reviver 1                                 // Enable/Disable the "Press (Key) to say thanks" to thank reviver when revived
