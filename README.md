@@ -1,7 +1,7 @@
 BO2: ZM QOL Mod (Quality of Life)
 ===============================
 
-# Project Ended (Please Read)
+## Project Ended (Please Read)
 
 Before reading, please know: This mod was not final and a good amount of the features implemented may not be working, or partially broken.
 
