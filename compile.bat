@@ -4,7 +4,7 @@ color 2
 echo.
 echo - Starting compiling process...
 
-set numberOf=11
+set numberOf=12
 if exist "build" (
     echo - \build directory already exists, continuing...
 ) else (
@@ -33,6 +33,10 @@ type "mods\spawn_on_join.gsc" >> "build\final.gsc"
 echo - Adding file 10/%numberOf%
 type "mods\zombie_counter.gsc" >> "build\final.gsc"
 echo - Adding file 11/%numberOf%
+type "mods\tranzit.gsc" >> "build\final.gsc"
+echo - Adding file 12/%numberOf%
+type "mods\dierise.gsc" >> "build\final.gsc"
+echo - Adding file 12/%numberOf%
 echo - Generated build\final.gsc file.
 timeout /t 2 /nobreak > NUL
 

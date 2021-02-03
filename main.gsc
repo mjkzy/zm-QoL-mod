@@ -29,6 +29,7 @@ init()
     level thread onplayerconnect();
     level thread init_server_dvars();
     level thread init_scoreboard();
+
     //level thread init_double_spawn();
 
     if (level.hitmarkers_on)
@@ -40,6 +41,8 @@ init()
 init_server_dvars()
 {
     level.lowertexty = 0;
+
+    level.perk_purchase_limit = getDvarIntDefault("QOL_perk_limit", 4);
     level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 0);
     level.spawn_on_join_immunity_on = getDvarIntDefault("QOL_spawn_on_join_ignore_on", 1);
     level.spawn_on_join_immunity = getDvarIntDefault("QOL_spawn_on_join_ignore", 3);
@@ -56,6 +59,33 @@ init_server_dvars()
         level thread disable_friendly_fire();
     level.give_player_semtex_on_spawn = getDvarIntDefault("QOL_give_semtex_on_spawn", 0);
     level.bo4_max_ammo = getDvarIntDefault("QOL_bo4_max_ammo", 1);
+    level.unlimited_sprint = getDvarIntDefault("QOL_unlimited_sprint", 0);
+
+    // TranZit
+    if (ToLower(getDvar("mapname")) == "zm_transit") {
+        if (maps/mp/zombies/_zm_weapons::is_weapon_included("jetgun_zm")) {
+            level.jetgun_explode = getDvarIntDefault("QOL_jetgun_explode", 1);
+            if (level.jetgun_explode)
+                level.explode_overheated_jetgun = false;
+            level.jetgun_unbuild = getDvarIntDefault("QOL_jetgun_unbuild", 1);
+            if (level.jetgun_unbuild)
+                level.unbuild_overheated_jetgun = false;
+            level.jetgun_range = getDvarIntDefault("QOL_jetgun_range", 1000);
+            if (level.jetgun_range != 1000)
+                set_zombie_var("jetgun_grind_range", level.jetgun_range);
+            level.screecher_on = getDvarIntDefault("QOL_denizens_ignore", 0);
+            if (level.screecher_on)
+                setDvar("scr_screecher_ignore_player", 1);
+            level.spawn_teleports = getDvarIntDefault("QOL_spawn_teleporters", 0);
+            if (level.spawn_teleports) {
+                level thread setupTeleportersInit();
+            }
+        }
+    }
+
+    level.power_doors = getDvarIntDefault("QOL_power_doors_open", 1);
+    if (level.power_doors)
+        level.power_local_doors_globally = true;
 
     level.player_perk_mix = getDvarIntDefault("QOL_perks_on_join_on", 1);
     level.player_perk_mix_printin = getDvarIntDefault("QOL_perks_on_join_printin", 0);
@@ -122,12 +152,13 @@ onplayerspawned()
     {
         self waittill("spawned_player");
 
-        // wait for the black screen to pass if the player is not joining later.
+        if (level.unlimited_sprint)
+            self setperk("specialty_unlimitedsprint");
+
         if (!flag("initial_blackscreen_passed") && !is_true(self.is_hotjoining)) {
             flag_wait("initial_blackscreen_passed");
         }
 
-        // only works on supported maps
         if (level.give_player_semtex_on_spawn)
             self thread give_player_semtex();
 
