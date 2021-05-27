@@ -39,7 +39,8 @@ init()
 
 init_server_dvars()
 {
-    level.redHm = getDvarIntDefault("QOL_red_hitmarkers", 0);
+    level.hitmarkers_red = getDvarIntDefault("QOL_red_hitmarkers", 1);
+    level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
 
     level.perk_purchase_limit = getDvarIntDefault("QOL_perk_limit", 4);
     level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 0);
