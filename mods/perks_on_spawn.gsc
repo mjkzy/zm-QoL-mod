@@ -98,57 +98,15 @@ do_perk_mix_math(minPlayers)
     // Step 2: Count number of perks and if they are greater than or equal to the required amount, put
     // them in the "perks to give" array.
 
-    switch (minPlayers) {
-        case (self.QOLjugg >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_armorvest", self.perksToGive.size);
-        case (self.QOLreload >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_fastreload", self.perksToGive.size);
-        case (self.QOLrevive >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_quickrevive", self.perksToGive.size);
-        case (self.QOLdoubletap >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_rof", self.perksToGive.size);
-        case (self.QOLstaminup >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_longersprint", self.perksToGive.size);
-        case (self.QOLdeadshot >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_deadshot", self.perksToGive.size);
-        case (self.QOLflakjacket >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_flakjacket", self.perksToGive.size);
-        case (self.QOLmulekick >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_additionalprimaryweapon", self.perksToGive.size);
-        case (self.QOLwhoswho >= minPlayers):
-            ArrayInsert(self.perksToGive, "specialty_finalstand", self.perksToGive.size);
-        default:
-            break;
-    }
-
-    // Archive of old way I did it.
-    /* if (self.QOLjugg >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_armorvest", self.perksToGive.size);
-    }
-    if (self.QOLreload >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_fastreload", self.perksToGive.size);
-    }
-    if (self.QOLrevive >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_quickrevive", self.perksToGive.size);
-    }
-    if (self.QOLdoubletap >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_rof", self.perksToGive.size);
-    }
-    if (self.QOLstaminup >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_longersprint", self.perksToGive.size);
-    }
-    if (self.QOLdeadshot >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_deadshot", self.perksToGive.size);
-    }
-    if (self.QOLflakjacket >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_flakjacket", self.perksToGive.size);
-    } 
-    if (self.QOLmulekick >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_additionalprimaryweapon", self.perksToGive.size);
-    }
-    if (self.QOLwhoswho >= minPlayers) {
-        ArrayInsert(self.perksToGive, "specialty_finalstand", self.perksToGive.size);
-    } */
+    if (self.QOLjugg >= minPlayers) ArrayInsert(self.perksToGive, "specialty_armorvest", self.perksToGive.size);
+    if (self.QOLreload >= minPlayers) ArrayInsert(self.perksToGive, "specialty_fastreload", self.perksToGive.size);
+    if (self.QOLrevive >= minPlayers) ArrayInsert(self.perksToGive, "specialty_quickrevive", self.perksToGive.size);
+    if (self.QOLdoubletap >= minPlayers) ArrayInsert(self.perksToGive, "specialty_rof", self.perksToGive.size);
+    if (self.QOLstaminup >= minPlayers) ArrayInsert(self.perksToGive, "specialty_longersprint", self.perksToGive.size);
+    if (self.QOLdeadshot >= minPlayers) ArrayInsert(self.perksToGive, "specialty_deadshot", self.perksToGive.size);
+    if (self.QOLflakjacket >= minPlayers) ArrayInsert(self.perksToGive, "specialty_flakjacket", self.perksToGive.size);
+    if (self.QOLmulekick >= minPlayers) ArrayInsert(self.perksToGive, "specialty_additionalprimaryweapon", self.perksToGive.size);
+    if (self.QOLwhoswho >= minPlayers) ArrayInsert(self.perksToGive, "specialty_finalstand", self.perksToGive.size);
 
     // Step 3: If the perk made it in the "perks to give" array, let's give those perks to the player.
     foreach (QOLperk in self.perksToGive) {
