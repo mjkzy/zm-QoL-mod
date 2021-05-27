@@ -6,8 +6,9 @@
 
 give_player_perk_mix()
 {
-    players = level.players.size;
-    switch (players) {
+    switch (level.players.size) {
+        case 0:
+            return;
         case 1:
         case 2:
             self thread do_perk_mix_math(1);
@@ -51,70 +52,51 @@ give_player_perk_mix()
 
 do_perk_mix_math(minPlayers)
 {
-    self.perksToGive = [];
-    self.QOLjugg = 0;
-    self.QOLrevive = 0;
-    self.QOLreload = 0;
-    self.QOLdoubletap = 0;
-    self.QOLstaminup = 0;
-    self.QOLdeadshot = 0;
-    self.QOLflakjacket = 0;
-    self.QOLmulekick = 0;
-    self.QOLwhoswho = 0;
+    perksToGive = [];
+
+    QOLjugg = 0;
+    QOLrevive = 0;
+    QOLreload = 0;
+    QOLdoubletap = 0;
+    QOLstaminup = 0;
+    QOLdeadshot = 0;
+    QOLflakjacket = 0;
+    QOLmulekick = 0;
+    QOLwhoswho = 0;
 
     // Step 1: Determine the number of perks each player has.
     foreach (player in level.players) {
-        if (IsAlive(player)) {
-            if (player HasPerk("specialty_armorvest")) { // jugg
-                self.QOLjugg++;
-            }
-            if (player HasPerk("specialty_fastreload")) { // sleight of hand
-                self.QOLreload++;
-            }
-            if (player HasPerk("specialty_quickrevive")) { // quick revive
-                self.QOLrevive++;
-            }
-            if (player HasPerk("specialty_rof")) { // double tap
-                self.QOLdoubletap++;
-            }
-            if (player HasPerk("specialty_longersprint")) {
-                self.QOLstaminup++;
-            }
-            if (player HasPerk("specialty_deadshot")) {
-                self.QOLdeadshot++;
-            }
-            if (player HasPerk("specialty_flakjacket")) {
-                self.QOLflakjacket++;
-            }
-            if (player HasPerk("specialty_additionalprimaryweapon")) {
-                self.QOLmulekick++;
-            }
-            if (player HasPerk("specialty_finalstand")) {
-                self.QOLwhoswho++;
-            }
+        if (isAlive(player)) {
+            if (player hasPerk("specialty_armorvest")) QOLjugg++;
+            if (player hasPerk("specialty_fastreload")) QOLreload++;
+            if (player hasPerk("specialty_quickrevive")) QOLrevive++;
+            if (player hasPerk("specialty_rof")) QOLdoubletap++;
+            if (player hasPerk("specialty_longersprint")) QOLstaminup++;
+            if (player hasPerk("specialty_deadshot")) QOLdeadshot++;
+            if (player hasPerk("specialty_flakjacket")) QOLflakjacket++;
+            if (player hasPerk("specialty_additionalprimaryweapon")) QOLmulekick++;
+            if (player hasPerk("specialty_finalstand")) QOLwhoswho++;
         }
     }
 
     // Step 2: Count number of perks and if they are greater than or equal to the required amount, put
     // them in the "perks to give" array.
 
-    if (self.QOLjugg >= minPlayers) ArrayInsert(self.perksToGive, "specialty_armorvest", self.perksToGive.size);
-    if (self.QOLreload >= minPlayers) ArrayInsert(self.perksToGive, "specialty_fastreload", self.perksToGive.size);
-    if (self.QOLrevive >= minPlayers) ArrayInsert(self.perksToGive, "specialty_quickrevive", self.perksToGive.size);
-    if (self.QOLdoubletap >= minPlayers) ArrayInsert(self.perksToGive, "specialty_rof", self.perksToGive.size);
-    if (self.QOLstaminup >= minPlayers) ArrayInsert(self.perksToGive, "specialty_longersprint", self.perksToGive.size);
-    if (self.QOLdeadshot >= minPlayers) ArrayInsert(self.perksToGive, "specialty_deadshot", self.perksToGive.size);
-    if (self.QOLflakjacket >= minPlayers) ArrayInsert(self.perksToGive, "specialty_flakjacket", self.perksToGive.size);
-    if (self.QOLmulekick >= minPlayers) ArrayInsert(self.perksToGive, "specialty_additionalprimaryweapon", self.perksToGive.size);
-    if (self.QOLwhoswho >= minPlayers) ArrayInsert(self.perksToGive, "specialty_finalstand", self.perksToGive.size);
+    if (QOLjugg >= minPlayers) ArrayInsert(perksToGive, "specialty_armorvest", perksToGive.size);
+    if (QOLreload >= minPlayers) ArrayInsert(perksToGive, "specialty_fastreload", perksToGive.size);
+    if (QOLrevive >= minPlayers) ArrayInsert(perksToGive, "specialty_quickrevive", perksToGive.size);
+    if (QOLdoubletap >= minPlayers) ArrayInsert(perksToGive, "specialty_rof", perksToGive.size);
+    if (QOLstaminup >= minPlayers) ArrayInsert(perksToGive, "specialty_longersprint", perksToGive.size);
+    if (QOLdeadshot >= minPlayers) ArrayInsert(perksToGive, "specialty_deadshot", perksToGive.size);
+    if (QOLflakjacket >= minPlayers) ArrayInsert(perksToGive, "specialty_flakjacket", perksToGive.size);
+    if (QOLmulekick >= minPlayers) ArrayInsert(perksToGive, "specialty_additionalprimaryweapon", perksToGive.size);
+    if (QOLwhoswho >= minPlayers) ArrayInsert(perksToGive, "specialty_finalstand", perksToGive.size);
 
-    // Step 3: If the perk made it in the "perks to give" array, let's give those perks to the player.
-    foreach (QOLperk in self.perksToGive) {
-        self maps/mp/zombies/_zm_perks::give_perk(QOLperk);
-    }
+    // Step 3: If the perk made it into the "perks to give" array, let's give those perks to the player.
+    foreach (QOLperk in perksToGive) self maps/mp/zombies/_zm_perks::give_perk(QOLperk);
 
     if (level.player_perk_mix_printin) {
-        self iprintln("You were given a mix of points from the alive players.");
+        self iprintln("You were given a mix of perks from the alive players.");
     }
 }
 

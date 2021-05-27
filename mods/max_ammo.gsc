@@ -11,16 +11,11 @@ monitorBO4ammo()
     level endon("game_end");
     for(;;) {
         self waittill("zmb_max_ammo");
-        self doBO4MaxAmmo();
+        weaps = self getweaponslist(1);
+        foreach (weap in weaps) {
+            self givemaxammo(weap);
+            self setweaponammoclip(weap, weaponclipsize(weap));
+        }
         wait 0.02;
-    }
-}
-
-doBO4MaxAmmo()
-{
-    weaps = self getweaponslist(1);
-    foreach (weap in weaps) {
-        self givemaxammo(weap);
-        self setweaponammoclip(weap, weaponclipsize(weap));
     }
 }
