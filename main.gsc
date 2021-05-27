@@ -76,9 +76,8 @@ init_server_dvars()
             if (level.screecher_on)
                 setDvar("scr_screecher_ignore_player", 1);
             level.spawn_teleports = getDvarIntDefault("QOL_spawn_teleporters", 0);
-            if (level.spawn_teleports) {
-                level thread setupTeleportersInit();
-            }
+            //if (level.spawn_teleports)
+            //    level thread setupTeleportersInit();
         }
     }
 

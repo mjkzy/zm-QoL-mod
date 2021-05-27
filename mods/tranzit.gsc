@@ -4,6 +4,7 @@
 
 */
 
+/*
 setupTeleportersInit()
 {
     if (ToLower(getDvar("mapname")) != "zm_transit") return;
@@ -34,3 +35,4 @@ setupTeleporters()
         wait 1;
     }
 }
+*/
