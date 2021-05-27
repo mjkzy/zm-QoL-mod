@@ -39,6 +39,8 @@ init()
 
 init_server_dvars()
 {
+    level.redHm = getDvarIntDefault("QOL_red_hitmarkers", 0);
+
     level.perk_purchase_limit = getDvarIntDefault("QOL_perk_limit", 4);
     level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 0);
     level.spawn_on_join_immunity_on = getDvarIntDefault("QOL_spawn_on_join_ignore_on", 1);
@@ -133,8 +135,12 @@ onplayerconnect()
         player thread onplayerspawned();
         
         player first_connection();
+
         if (level.spawn_on_join_on)
             player thread spawn_on_join();
+
+        if (level.hitmarkers_on && !isDefined(player.hud_damagefeedback))
+            player thread init_player_hitmarkers();
     }
 }
 
