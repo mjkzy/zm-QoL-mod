@@ -41,7 +41,7 @@ updatedamagefeedback(mod, inflictor, death)
 	if (isDefined(mod) && mod != "MOD_CRUSH" && mod != "MOD_GRENADE_SPLASH" && mod != "MOD_HIT_BY_OBJECT")
 	{
 		if (isDefined(inflictor)) self playlocalsound("mpl_hit_alert");
-		if (death && level.redHM) {
+		if (death && level.hitmarkers_red) {
     		self.hud_damagefeedback_red setshader("damage_feedback", 24, 48);
 			self.hud_damagefeedback_red.alpha = 1;
 			self.hud_damagefeedback_red fadeovertime(1);
@@ -62,7 +62,6 @@ do_hitmarker_death()
 		self.attacker thread updatedamagefeedback(self.damagemod, self.attacker, 1);
     return 0;
 }
-
 
 do_hitmarker(mod, hitloc, hitorig, player, damage)
 {

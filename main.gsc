@@ -45,8 +45,6 @@ init_server_dvars()
     level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 0);
     level.spawn_on_join_immunity_on = getDvarIntDefault("QOL_spawn_on_join_ignore_on", 1);
     level.spawn_on_join_immunity = getDvarIntDefault("QOL_spawn_on_join_ignore", 3);
-    level.hitmarkers_on = getDvarIntDefault("QOL_hitmarkers_on", 1);
-    level.hitmarkers_red = getDvarIntDefault("QOL_hitmarkers_red", 0);
     level.zombie_counter_on = getDvarIntDefault("QOL_zombie_counter_on", 0);
     if (level.zombie_counter_on)
         level thread drawZombiesCounter();
