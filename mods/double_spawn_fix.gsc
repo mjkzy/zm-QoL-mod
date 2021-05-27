@@ -4,7 +4,7 @@
 
 */
 
-init_double_spawn()
+/* init_double_spawn()
 {
     //level.spawnplayer = ::spawnplayer;
     level.spawnclient = ::spawnclient;
@@ -551,3 +551,4 @@ spawn_button()
 	}
 }
 
+*/

@@ -18,7 +18,6 @@
 #include maps/mp/gametypes_zm/_tweakables;
 #include maps/mp/_challenges;
 #include maps/mp/gametypes_zm/_weapons;
-#include maps/mp/_demo;
 #include maps/mp/gametypes_zm/_globallogic_spawn;
 #include maps/mp/zombies/_zm_stats;
 #include maps/mp/zombies/_zm;
@@ -29,8 +28,6 @@ init()
     level thread onplayerconnect();
     level thread init_server_dvars();
     level thread init_scoreboard();
-
-    //level thread init_double_spawn();
 
     if (level.hitmarkers_on)
         level thread init_hitmarkers();
@@ -61,7 +58,7 @@ init_server_dvars()
     level.bo4_max_ammo = getDvarIntDefault("QOL_bo4_max_ammo", 1);
     level.unlimited_sprint = getDvarIntDefault("QOL_unlimited_sprint", 0);
 
-    // TranZit
+    // TranZit-specific mods
     if (ToLower(getDvar("mapname")) == "zm_transit") {
         if (maps/mp/zombies/_zm_weapons::is_weapon_included("jetgun_zm")) {
             level.jetgun_explode = getDvarIntDefault("QOL_jetgun_explode", 1);
@@ -173,7 +170,7 @@ onplayerspawned()
                     self thread give_player_perk_mix();
             }
             if (level.bo4_max_ammo)
-                self thread doBO4MaxAmmo();
+                self thread monitorBO4ammo();
             self.firstSpawn = false;
         }
     }
