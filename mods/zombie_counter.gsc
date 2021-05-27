@@ -11,14 +11,13 @@ drawZombiesCounter()
     while(true)
     {
     	enemies = get_round_enemy_array().size + level.zombie_total;
-        if ( enemies <= 3 )
+        if (enemies <= 3)
         	level.zombiesCounter.label = &"Zombies: ^3";
-        else if( enemies != 0 )
+        else if (enemies != 0)
             level.zombiesCounter.label = &"Zombies: ^2";
         else
         	level.zombiesCounter.label = &"Zombies: ^1";
-        level.zombiesCounter setValue( enemies );
+        level.zombiesCounter setValue(enemies);
         wait 0.05;
     }
 }
-

@@ -23,6 +23,8 @@
 #include maps/mp/zombies/_zm;
 #include maps/mp/zombies/_zm_utility;
 
+#include maps/mp/zm_transit_ai_screecher;
+
 init()
 {
     level thread onplayerconnect();
@@ -37,8 +39,6 @@ init()
 
 init_server_dvars()
 {
-    level.lowertexty = 0;
-
     level.perk_purchase_limit = getDvarIntDefault("QOL_perk_limit", 4);
     level.spawn_on_join_on = getDvarIntDefault("QOL_spawn_on_join_on", 0);
     level.spawn_on_join_immunity_on = getDvarIntDefault("QOL_spawn_on_join_ignore_on", 1);
