@@ -11,6 +11,11 @@ if exist "build" (
     mkdir "build"
     echo - build\ created.
 )
+
+if exist "build\final.gsc" (
+    del /f "build\final.gsc"
+)
+
 type "main.gsc" >> "build\final.gsc"
 echo - Adding file 1/%numberOf%
 type "mods\double_spawn_fix.gsc" >> "build\final.gsc"
@@ -38,7 +43,6 @@ echo - Adding file 12/%numberOf%
 type "mods\dierise.gsc" >> "build\final.gsc"
 echo - Adding file 12/%numberOf%
 echo - Generated build\final.gsc file.
-timeout /t 2 /nobreak > NUL
 
 if exist "resources\compiler\Compiler.exe" (
     if exist "resources\compiler\Irony.dll" (

@@ -130,8 +130,6 @@ onplayerconnect()
     for(;;)
     {
         level waittill("connected", player);
-        player freezeControls(0);
-        player thread spawn_button();
         player thread onplayerspawned();
         
         player first_connection();

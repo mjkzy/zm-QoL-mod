@@ -11,6 +11,11 @@ if exist "build" (
     mkdir "build"
     echo - build\ created.
 )
+
+if exist "build\final.gsc" (
+    del /f "build\final.gsc"
+)
+
 type "main.gsc" >> "build\final.gsc"
 echo - Adding file 1/%numberOf%
 type "mods\double_spawn_fix.gsc" >> "build\final.gsc"
@@ -38,11 +43,9 @@ echo - Adding file 12/%numberOf%
 type "mods\dierise.gsc" >> "build\final.gsc"
 echo - Adding file 12/%numberOf%
 echo - Generated build\final.gsc file.
-timeout /t 2 /nobreak > NUL
 
-del /f "C:\Games\Black Ops 2\data\scripts\final_redacted.gsc"
-xcopy /c /f "build\final_redacted.gsc" "C:\Games\Black Ops 2\data\scripts\" /Y
-del /f "build\final_redacted.gsc"
+del /f "C:\Games\Black Ops 2\data\scripts\final.gsc"
+xcopy /c /f "build\final.gsc" "C:\Games\Black Ops 2\data\scripts\" /Y
+del /f "build\final.gsc"
 
-pause
 color 7
